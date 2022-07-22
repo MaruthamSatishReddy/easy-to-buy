@@ -1,8 +1,10 @@
-import React from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
-import Image from 'next/image';
+import React, { useContext } from 'react';
+import { Store } from '../utils/Store';
 export default function Layout({ title, children }) {
+  const { state } = useContext(Store);
+  const { cart } = state;
   return (
     <>
       <Head>
@@ -18,6 +20,11 @@ export default function Layout({ title, children }) {
             <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
               <Link href="/cart">
                 <a className="flex-col justify-between">
+                  {cart.cartItems.length > 0 && (
+                    <span className="ml-1 rounded-full bg-red-600 px-2 py-1 text-xs font-bold text-white">
+                      {cart.cartItems.reduce((a, c) => a + c.quantity, 0)}
+                    </span>
+                  )}
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="h-7 w-7"
