@@ -1,7 +1,11 @@
+/* eslint-disable @next/next/no-img-element */
+/* eslint-disable react/jsx-key */
 import Head from 'next/head';
 import Link from 'next/link';
 import React, { useContext } from 'react';
 import { Store } from '../utils/Store';
+import data from '../utils/data';
+import Image from 'next/image';
 export default function Layout({ title, children }) {
   const { state } = useContext(Store);
   const { cart } = state;
@@ -13,11 +17,28 @@ export default function Layout({ title, children }) {
       </Head>
       <div className="flex min-h-screen flex-col justify-between">
         <header>
-          <nav className="flex h-14 items-center px-4 justify-between shadow-md bg-white">
+          <nav className="flex h-14 items-center px-4 justify-between shadow-md bg-white grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-4">
             <Link href="/">
-              <a className="text-lg font-bold">Easy To Buy</a>
+              <img
+                src="/images/easytobuy.png"
+                alt="Easy To Buy"
+                width={100}
+                height={98}
+                layout="responsive"
+                className="ml-8"
+              ></img>
             </Link>
-            <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+            <form method="GET">
+    <div className="relative text-gray-600 focus-within:text-gray-400">
+      <span className="absolute inset-y-0 left-0 flex items-center pl-2">
+        <button type="submit" className="p-1 focus:outline-none focus:shadow-outline">
+          <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="w-6 h-6"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+        </button>
+      </span>
+      <input type="search" name="q" className="py-2 text-sm text-white bg-gray-900 rounded-md pl-10 focus:outline-none focus:bg-white focus:text-gray-900" placeholder="Search The Product" autocomplete="off"></input>
+    </div>
+  </form>
+            <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-4">
               <Link href="/cart">
                 <a className="flex-col justify-between">
                   {cart.cartItems.length > 0 && (
