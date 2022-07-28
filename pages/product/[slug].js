@@ -5,7 +5,7 @@ import React, { useContext } from 'react';
 import Layout from '../../components/Layout';
 import data from '../../utils/data';
 import { Store } from '../../utils/Store';
-import { HiArrowNarrowLeft } from 'react-icons/all';
+import { HiArrowNarrowLeft } from 'react-icons/hi';
 
 export default function ProductScreen() {
   const { state, dispatch } = useContext(Store);
@@ -32,7 +32,7 @@ export default function ProductScreen() {
     <Layout title={product.name}>
       <div className="py-2">
         <Link href="/">
-          <HiArrowNarrowLeft className="w-10"></HiArrowNarrowLeft>
+          <HiArrowNarrowLeft></HiArrowNarrowLeft>
         </Link>
       </div>
       <div className="grid md:grid-cols-4 md:gap-3">

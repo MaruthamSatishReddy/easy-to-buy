@@ -1,7 +1,7 @@
 import Head from 'next/head';
+import Image from 'next/image';
 import Link from 'next/link';
 import React, { useContext } from 'react';
-import { icons } from 'react-icons';
 import { Store } from '../utils/Store';
 export default function Layout({ title, children }) {
   const { state } = useContext(Store);
@@ -16,14 +16,14 @@ export default function Layout({ title, children }) {
         <header>
           <nav className="flex h-14 items-center px-4 justify-between shadow-md bg-white grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-4">
             <Link href="/">
-              <img
+              <Image
                 src="/images/easytobuy.png"
                 alt="Easy To Buy"
                 width={100}
                 height={98}
                 layout="responsive"
                 className="ml-8"
-              ></img>
+              ></Image>
             </Link>
             <div className="flex">
               <input
