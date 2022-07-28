@@ -1,10 +1,8 @@
-
 import Head from 'next/head';
 import Link from 'next/link';
 import React, { useContext } from 'react';
+import { icons } from 'react-icons';
 import { Store } from '../utils/Store';
-import data from '../utils/data';
-import Image from 'next/image';
 export default function Layout({ title, children }) {
   const { state } = useContext(Store);
   const { cart } = state;
@@ -27,6 +25,28 @@ export default function Layout({ title, children }) {
                 className="ml-8"
               ></img>
             </Link>
+            <div className="flex">
+              <input
+                type="text"
+                className="rounded-l-lg bg-gray-50 border focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5   dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Search Your Product..."
+              />
+              <span className="inline-flex items-center px-3 text-sm rounded-r-md border border-l-0 primary-button">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5 ml-2"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </span>
+            </div>
+
             <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-4">
               <Link href="/cart">
                 <a className="flex-col justify-between">
@@ -45,6 +65,7 @@ export default function Layout({ title, children }) {
                   </svg>
                 </a>
               </Link>
+
               <Link href="/login">
                 <a className="flex-col justify-between  pl-10">
                   <svg
@@ -65,11 +86,9 @@ export default function Layout({ title, children }) {
           </nav>
         </header>
         <main className="container m-auto mt-t px-4">{children}</main>
-        <footer className="flext h-10 justify-center items-center shadow-inner text-center bg-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex items-center h-16 text-white">
-              © 2022 Copyright:
-            </div>
+        <footer className="flext h-10 justify-center items-center shadow-lg text-center bg-white ">
+          <div className="flex items-center h-16 text-white">
+            © 2022 Copyright:
           </div>
         </footer>
       </div>

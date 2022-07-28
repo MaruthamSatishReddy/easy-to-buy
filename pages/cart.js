@@ -25,8 +25,10 @@ export default function CartScreen() {
     toast.success('Product updated in the cart');
   };
 
-  const increment = (event) => {
-    setCount(count + 1);
+  const incrementCount = (item, qty) => {
+    const quantityVal = Number(3);
+
+    dispatch({ type: 'CART_ADD_ITEM', payload: { ...item, quantityVal } });
   };
   const decrement = (event) => {
     setCount(count - 1);
@@ -89,7 +91,9 @@ export default function CartScreen() {
                           ></input>
 
                           <button
-                            onClick={increment}
+                            onClick={(e) =>
+                              incrementCount(item, e.target.value)
+                            }
                             className="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-r cursor-pointer"
                           >
                             <span className="m-auto text-2xl font-thin">+</span>
@@ -102,7 +106,7 @@ export default function CartScreen() {
                       <button onClick={() => removeItemHandler(item)}>
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
-                          className="h-6 w-6"
+                          className="h-6 w-6 bg-inherit"
                           fill="none"
                           viewBox="0 0 24 24"
                           stroke="currentColor"
