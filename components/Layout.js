@@ -1,11 +1,17 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Store } from '../utils/Store';
 export default function Layout({ title, children }) {
   const { state } = useContext(Store);
   const { cart } = state;
+  const [cartItemsCount, setCartItemsCount] = useState(0);
+  useEffect(
+    () => setCartItemsCount(cart.cartItems.reduce((a, c) => a + c.quantity, 0)),
+    [cart.cartItems]
+  );
+
   return (
     <>
       <Head>
@@ -50,9 +56,9 @@ export default function Layout({ title, children }) {
             <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-4">
               <Link href="/cart">
                 <a className="flex-col justify-between">
-                  {cart.cartItems.length > 0 && (
+                  {cartItemsCount > 0 && (
                     <span className="ml-1 rounded-full bg-red-600 px-2 py-1 text-xs font-bold text-white">
-                      {cart.cartItems.reduce((a, c) => a + c.quantity, 0)}
+                      {cartItemsCount}
                     </span>
                   )}
                   <svg
@@ -86,10 +92,8 @@ export default function Layout({ title, children }) {
           </nav>
         </header>
         <main className="container m-auto mt-t px-4">{children}</main>
-        <footer className="flext h-10 justify-center items-center shadow-lg text-center bg-white ">
-          <div className="flex items-center h-16 text-white">
-            © 2022 Copyright:
-          </div>
+        <footer className="flex h-10 justify-center items-center shadow-inner">
+          <p>Copyright © 2022 Easy To Buy</p>
         </footer>
       </div>
     </>
