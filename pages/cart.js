@@ -3,8 +3,8 @@ import { Store } from '../utils/Store';
 import Layout from '../components/Layout';
 import Link from 'next/link';
 import Image from 'next/image';
-import { XCircleIcon } from '@heroicons/react/outline';
 import dynamic from 'next/dynamic';
+import { HiArrowNarrowLeft } from 'react-icons/hi';
 
 function CartScreen() {
   const { state, dispatch } = useContext(Store);
@@ -37,6 +37,9 @@ function CartScreen() {
 
   return (
     <Layout title="Shopping Cart">
+      <Link href="/">
+        <HiArrowNarrowLeft></HiArrowNarrowLeft>
+      </Link>
       <h1 className="mb-1 text-xl">Shopping Cart</h1>
       {cartItems.length === 0 ? (
         <div>
