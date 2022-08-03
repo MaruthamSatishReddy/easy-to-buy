@@ -41,7 +41,7 @@ export default function Layout({ title, children }) {
                 alt="Workflow"
               />
             </Link>
-            <div className="flex">
+            <div className="invisible sm:visible flex">
               <input
                 type="text"
                 className="rounded-l-lg bg-gray-50 border focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5   dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -63,7 +63,7 @@ export default function Layout({ title, children }) {
               </span>
             </div>
 
-            <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-4">
+            <div className="inset-y-0 right-0 flex pr-2 grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-4">
               <Link href="/cart">
                 <a className="flex-col justify-between">
                   {cartItemsCount > 0 && (
