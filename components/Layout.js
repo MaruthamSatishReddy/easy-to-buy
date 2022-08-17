@@ -8,11 +8,18 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Menu } from '@headlessui/react';
 import DropdownLink from './DropdownLink';
+import Image from 'next/image';
 export default function Layout({ title, children }) {
   const { status, data: session } = useSession();
   const { state, dispatch } = useContext(Store);
   const { cart } = state;
   const [cartItemsCount, setCartItemsCount] = useState(0);
+  let [categories, setCategories] = useState([]);
+  useEffect(() => {
+    fetch(`http://localhost:3000/api/category`).then((response) =>
+      response.json().then((result) => setCategories(result))
+    );
+  }, []);
   useEffect(
     () => setCartItemsCount(cart.cartItems.reduce((a, c) => a + c.quantity, 0)),
     [cart.cartItems]
@@ -28,12 +35,13 @@ export default function Layout({ title, children }) {
     <>
       <Head>
         <title> {title ? title + ' Easy To Buy ' : 'Easy To Buy'}</title>
+
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <ToastContainer position="bottom-center" limit={1} />
       <div className="flex min-h-screen flex-col justify-between">
         <header>
-          <nav className="flex h-14 items-center px-4 justify-between shadow-md bg-white grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-4">
+          <nav className="flex h-14 items-center shadow-md bg-white grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-4">
             <Link href="/">
               <img
                 className="h-12 w-12"
@@ -41,13 +49,22 @@ export default function Layout({ title, children }) {
                 alt="Workflow"
               />
             </Link>
-            <div className="invisible sm:visible flex">
+
+            {categories.map((category) => (
+              <Link href="/">
+                <a className="text-gray-500 text-lg hover:text-xl">
+                  {category.categoryName}
+                </a>
+              </Link>
+            ))}
+
+            <div className="invisible sm:visible flex items-center px-7">
               <input
                 type="text"
                 className="rounded-l-lg bg-gray-50 border focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5   dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="Search Your Product..."
               />
-              <span className="inline-flex items-center px-3 text-sm rounded-r-md border border-l-0 primary-button">
+              <span className="rounded-l-full items-center px-3 text-sm border border-l-0 primary-button">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-5 w-5 ml-2"
@@ -63,21 +80,27 @@ export default function Layout({ title, children }) {
               </span>
             </div>
 
-            <div className="inset-y-0 right-0 flex pr-2 grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-4">
+            <div className="inset-y-0 right-0 flex py-10 grid-cols-1 gap-2 md:grid-cols-3 lg:grid-cols-4">
               <Link href="/cart">
                 <a className="flex-col justify-between">
                   {cartItemsCount > 0 && (
-                    <span className="ml-1 rounded-full bg-red-600 px-2 py-1 text-xs font-bold text-white">
+                    <span className="ml-1 rounded-t-full bg-red-600 bg-transparent px-1 font-bold text-white text-xs">
                       {cartItemsCount}
                     </span>
                   )}
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="h-7 w-7"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
+                    className="h-6 w-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="1"
                   >
-                    <path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" />
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+                    />
                   </svg>
                 </a>
               </Link>
@@ -88,7 +111,7 @@ export default function Layout({ title, children }) {
                   <Menu.Button className="text-blue-600">
                     {session.user.name}
                   </Menu.Button>
-                  <Menu.Items className="absolute right-0 w-56 origin-top-right shadow-lg">
+                  <Menu.Items className="absolute right-0 w-56 origin-top-right shadow-gray-500">
                     <Menu.Item>
                       <DropdownLink className="dropdown-link" href="/profile">
                         Profile
@@ -119,13 +142,15 @@ export default function Layout({ title, children }) {
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       className="h-7 w-7"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      stroke-width="1"
                     >
                       <path
-                        fillRule="evenodd"
-                        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z"
-                        clipRule="evenodd"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"
                       />
                     </svg>
                   </a>

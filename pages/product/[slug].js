@@ -50,22 +50,24 @@ export default function ProductScreen() {
             <li>
               <h1 className="text-lg">{product.name}</h1>
             </li>
-            <li>Category: {product.category}</li>
-            <li>Brand: {product.brand}</li>
-            <li>
+            <li className="text-gray-500">Category: {product.category}</li>
+            <li className="text-gray-500">Brand: {product.brand}</li>
+            <li className="text-gray-500">
               {product.rating} of {product.numReviews} reviews
             </li>
-            <li>Description: {product.description}</li>
+            <li className="text-gray-500">
+              Description: {product.description}
+            </li>
           </ul>
         </div>
         <div>
           <div className="card p-5">
             <div className="mb-2 flex justify-between">
-              <div>Price</div>
+              <div className="text-gray-500">Price</div>
               <div>${product.price}</div>
             </div>
             <div className="mb-2 flex justify-between">
-              <div>Status</div>
+              <div className="text-gray-500">Status</div>
               <div>{product.countInStock > 0 ? 'In stock' : 'Unavailable'}</div>
             </div>
             <button

@@ -14,6 +14,21 @@ const data = {
       isAdmin: false,
     },
   ],
+
+  categories: [
+    {
+      categoryName: 'Men',
+      categoryDescription: 'Mens Collection',
+    },
+    {
+      categoryName: 'Women',
+      categoryDescription: 'Womens Collection',
+    },
+    {
+      categoryName: 'Kids',
+      categoryDescription: 'Kids Collection',
+    },
+  ],
   products: [
     {
       name: 'Free Shirt',

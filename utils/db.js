@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 const connection = {};
 async function connect() {
   if (connection.isConnected) {
+    console.log('Mongose Connection Is Ready');
     return;
   }
   if (mongoose.connections.length > 0) {
