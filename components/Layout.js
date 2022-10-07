@@ -5,6 +5,8 @@ import Cookies from 'js-cookie';
 import Link from 'next/link';
 import { Store } from '../utils/Store';
 import Image from 'next/image';
+import Carousel from './Carousel';
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 export default function Layout({ title, children }) {
   const { state, dispatch } = useContext(Store);
@@ -120,7 +122,9 @@ export default function Layout({ title, children }) {
                 />
               </span>
 
-              <div className="invisible absolute left-0 top-full z-100 w-full  divide-dashed   bg-gray-100 shadow rounded divide-y divide-gray-200 space-y-4 text-gray-600 opacity-100 duration-300 group-hover:visible group-hover:opacity-100 py-4"></div>
+              <div className="invisible absolute left-0 top-full z-100 w-full  divide-dashed   bg-gray-100 shadow rounded divide-y divide-gray-200 space-y-4 text-gray-600 opacity-100 duration-300 group-hover:visible group-hover:opacity-100 py-4">
+                Satish Marutham
+              </div>
             </div>
           </div>
         </div>
@@ -273,6 +277,7 @@ export default function Layout({ title, children }) {
           </div>
         </nav>
       </header>
+      <Carousel></Carousel>
       <main className="container m-auto mt-t px-4">{children}</main>
       <footer className="flex h-10 justify-center items-center shadow-inner">
         <p>Copyright © 2022 Easy To Buy</p>
