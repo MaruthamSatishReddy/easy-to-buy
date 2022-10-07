@@ -7,15 +7,17 @@ import Product from '../models/Product';
 
 export default function Home({ products }) {
   return (
-    <div>
-      <Layout>
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-4 mt-2">
-          {products.map((product) => (
-            <ProductItem product={product} key={product.slug}></ProductItem>
-          ))}
-        </div>
-      </Layout>
-    </div>
+    <>
+      <div>
+        <Layout>
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-4 mt-2">
+            {products.map((product) => (
+              <ProductItem product={product} key={product.slug}></ProductItem>
+            ))}
+          </div>
+        </Layout>
+      </div>
+    </>
   );
 }
 

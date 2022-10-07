@@ -6,6 +6,7 @@ import { useRouter } from 'next/router';
 import { signIn, useSession } from 'next-auth/react';
 import { getError } from '../utils/error';
 import { useForm } from 'react-hook-form';
+import Image from 'next/image';
 
 export default function LoginScreen() {
   const { data: session } = useSession();
@@ -138,7 +139,7 @@ export default function LoginScreen() {
             <div>
               <button
                 type="submit"
-                className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white primary-button focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white primary-button focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 bg-primary"
               >
                 <span className="absolute left-0 inset-y-0 flex items-center pl-3">
                   <LockClosedIcon
