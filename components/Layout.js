@@ -5,7 +5,6 @@ import Cookies from 'js-cookie';
 import Link from 'next/link';
 import { Store } from '../utils/Store';
 import Image from 'next/image';
-import Carousel from './Carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 export default function Layout({ title, children }) {
@@ -29,7 +28,7 @@ export default function Layout({ title, children }) {
 
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <header className="py-2 shadow-sm bg-pink-100 lg:bg-white">
+      <header className="py-2 shadow-lg lg:bg-white">
         <div className="container flex items-center justify-between">
           <a href="#" className="block w-32">
             <Image
@@ -123,7 +122,25 @@ export default function Layout({ title, children }) {
               </span>
 
               <div className="invisible absolute left-0 top-full z-100 w-full  divide-dashed   bg-gray-100 shadow rounded divide-y divide-gray-200 space-y-4 text-gray-600 opacity-100 duration-300 group-hover:visible group-hover:opacity-100 py-4">
-                Satish Marutham
+                <Link href="/account">
+                  <div className="mr-2">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 20 20"
+                      strokewidth="1.5"
+                      stroke="currentColor"
+                      className="w-4 h-4"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M4.5 12a7.5 7.5 0 0015 0m-15 0a7.5 7.5 0 1115 0m-15 0H3m16.5 0H21m-1.5 0H12m-8.457 3.077l1.41-.513m14.095-5.13l1.41-.513M5.106 17.785l1.15-.964m11.49-9.642l1.149-.964M7.501 19.795l.75-1.3m7.5-12.99l.75-1.3m-6.063 16.658l.26-1.477m2.605-14.772l.26-1.477m0 17.726l-.26-1.477M10.698 4.614l-.26-1.477M16.5 19.794l-.75-1.299M7.5 4.205L12 12m6.894 5.785l-1.149-.964M6.256 7.178l-1.15-.964m15.352 8.864l-1.41-.513M4.954 9.435l-1.41-.514M12.002 12l-3.75 6.495"
+                      />
+                    </svg>
+                    <span className="ml-6 mb-5 mr-10">Settings</span>
+                  </div>
+                </Link>
               </div>
             </div>
           </div>
@@ -277,9 +294,9 @@ export default function Layout({ title, children }) {
           </div>
         </nav>
       </header>
-      <Carousel></Carousel>
+
       <main className="container m-auto mt-t px-4">{children}</main>
-      <footer className="flex h-10 justify-center items-center shadow-inner">
+      <footer className="flex h-12 justify-center items-center shadow-inner bg-white">
         <p>Copyright © 2022 Easy To Buy</p>
       </footer>
     </>
