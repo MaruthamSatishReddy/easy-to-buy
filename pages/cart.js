@@ -4,6 +4,7 @@ import Layout from '../components/Layout';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { HiArrowNarrowLeft } from 'react-icons/hi';
+import { toast, ToastContainer } from 'react-nextjs-toast';
 import axios from 'axios';
 
 function CartScreen() {
@@ -13,6 +14,7 @@ function CartScreen() {
     cart: { cartItems },
   } = state;
   const removeItemHandler = (item) => {
+    toast.notify('Product Removed From Cart');
     dispatch({ type: 'CART_REMOVE_ITEM', payload: item });
   };
   const updateCartHandler = async (item, qty) => {
@@ -23,7 +25,8 @@ function CartScreen() {
     }
     dispatch({ type: 'CART_ADD_ITEM', payload: { ...item, quantity } });
 
-    toast.success('Product updated in the cart');
+    toast.notify('Product updated in the cart');
+    toast.remove();
   };
 
   const incrementCount = (item, qty) => {
@@ -40,7 +43,9 @@ function CartScreen() {
       <Link href="/">
         <HiArrowNarrowLeft></HiArrowNarrowLeft>
       </Link>
+
       <h1 className="mb-1 text-xl">Shopping Cart</h1>
+      <ToastContainer />
       {cartItems.length === 0 ? (
         <div>
           Cart is empty. <Link href="/">Go shopping</Link>
