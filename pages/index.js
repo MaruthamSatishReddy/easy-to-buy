@@ -5,6 +5,8 @@ import Layout from '/components/Layout';
 import db from '../utils/db';
 import Product from '../models/Product';
 import CarouselScreen from '../components/Carousel';
+import Features from '../components/Features';
+import Categories from '../components/Categories';
 
 export default function Home({ products }) {
   return (
@@ -13,6 +15,8 @@ export default function Home({ products }) {
         <Layout>
           <div>
             <CarouselScreen></CarouselScreen>
+            <Features></Features>
+            <Categories></Categories>
           </div>
           <div className="grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-4 mt-2">
             {products.map((product) => (

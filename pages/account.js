@@ -3,6 +3,17 @@ import Layout from '../components/Layout';
 export default function account() {
   return (
     <Layout title="Account">
+      <div className="container py-4 flex justify-between ">
+        <div className="flex gap-3 items-center ">
+          <a href="index.html" className="text-primary text-base">
+            <i className="fas fa-home"></i>
+          </a>
+          <span className="text-sm text-gray-500 ">
+            <i className="fas fa-chevron-right"></i>
+          </span>
+          <p className="text-gray-500 font-medium uppercase">My Account</p>
+        </div>
+      </div>
       <div className="container lg:grid grid-cols-12 items-start gap-6 pt-4 pb-16 ">
         <div className="col-span-3">
           <div className="px-4 py-3 shadow flex bg-gray-100 items-center gap-4 ">

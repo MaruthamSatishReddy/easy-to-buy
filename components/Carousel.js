@@ -1,6 +1,5 @@
 import React from 'react';
 import { Carousel } from 'react-responsive-carousel';
-import Layout from './Layout';
 
 export default function CarouselScreen() {
   return (
