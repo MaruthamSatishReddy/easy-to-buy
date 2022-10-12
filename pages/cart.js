@@ -14,7 +14,10 @@ function CartScreen() {
     cart: { cartItems },
   } = state;
   const removeItemHandler = (item) => {
-    toast.notify('Product Removed From Cart');
+    toast.notify('Product Removed From Cart', {
+      duration: 2,
+      type: 'success',
+    });
     dispatch({ type: 'CART_REMOVE_ITEM', payload: item });
   };
   const updateCartHandler = async (item, qty) => {
@@ -24,7 +27,6 @@ function CartScreen() {
       return toast.error('Sorry. Product is out of stock');
     }
     dispatch({ type: 'CART_ADD_ITEM', payload: { ...item, quantity } });
-
     toast.notify('Product updated in the cart');
     toast.remove();
   };
@@ -40,12 +42,13 @@ function CartScreen() {
 
   return (
     <Layout title="Shopping Cart">
+      <ToastContainer />
       <Link href="/">
         <HiArrowNarrowLeft></HiArrowNarrowLeft>
       </Link>
 
       <h1 className="mb-1 text-xl">Shopping Cart</h1>
-      <ToastContainer />
+
       {cartItems.length === 0 ? (
         <div>
           Cart is empty. <Link href="/">Go shopping</Link>
